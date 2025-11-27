@@ -32,5 +32,68 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  initSafetyPlanImageViewer();
 });
+
+function initSafetyPlanImageViewer() {
+  const slider = document.getElementById('safety-slider');
+  if (!slider) return;
+
+  const images = slider.querySelectorAll('.beck-slider-image');
+  const pageInfo = document.getElementById('safety-img-info');
+  const prevBtn = document.getElementById('safety-img-prev');
+  const nextBtn = document.getElementById('safety-img-next');
+  
+  let currentPage = 0;
+  const totalPages = images.length;
+
+  function showPage(index) {
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+    });
+    
+    pageInfo.textContent = `Page ${index + 1} / ${totalPages}`;
+    prevBtn.disabled = index <= 0;
+    nextBtn.disabled = index >= totalPages - 1;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+  let touchStartX = null;
+
+  slider.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  slider.addEventListener('touchend', e => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const threshold = 50;
+
+    if (dx < -threshold && currentPage < totalPages - 1) {
+      currentPage++;
+      showPage(currentPage);
+    } else if (dx > threshold && currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
+    }
+
+    touchStartX = null;
+  });
+
+  showPage(currentPage);
+}
 

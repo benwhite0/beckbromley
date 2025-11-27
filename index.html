@@ -83,19 +83,24 @@
             </div>
           </div>
 
-          <!-- Bottom Right: Safety Plan Guide PDF -->
-          <div class="beck-box beck-box-pdf">
+          <!-- Bottom Right: Safety Plan Guide -->
+          <div class="beck-box beck-box-pdf beck-box-image-viewer">
             <h2 class="beck-box-title">A4 SAFETY PLAN<br>GUIDE</h2>
             <div class="beck-box-content">
-              <div class="beck-pdf-preview">
-                <img src="safetyplan-preview.jpg" alt="Safety Plan Preview" class="beck-pdf-preview-img">
+              <div class="beck-image-viewer">
+                <div class="beck-image-slider" id="safety-slider">
+                  <img src="Beck-safetyplan_page-0001.jpg" alt="Safety Plan Page 1" class="beck-slider-image active">
+                  <img src="Beck-safetyplan_page-0002.jpg" alt="Safety Plan Page 2" class="beck-slider-image">
+                </div>
+              </div>
+              <div class="beck-pdf-controls">
+                <button id="safety-img-prev" class="beck-nav-btn">&larr; Previous</button>
+                <span id="safety-img-info">Page 1 / 2</span>
+                <button id="safety-img-next" class="beck-nav-btn">Next &rarr;</button>
               </div>
               <div class="beck-pdf-actions">
-                <a href="Beck-safetyplan.pdf" class="beck-pdf-button btn" target="_blank" rel="noopener">
-                  Read
-                </a>
                 <a href="Beck-safetyplan.pdf" class="beck-pdf-button btn" download="Beck-safetyplan.pdf">
-                  Download
+                  Download PDF
                 </a>
               </div>
             </div>
@@ -139,7 +144,7 @@
     </div>
   </footer>
 
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
 
