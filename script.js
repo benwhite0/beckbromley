@@ -41,9 +41,10 @@ function initSafetyPlanImageViewer() {
   if (!slider) return;
 
   const images = slider.querySelectorAll('.beck-slider-image');
-  const pageInfo = document.getElementById('safety-img-info');
-  const prevBtn = document.getElementById('safety-img-prev');
-  const nextBtn = document.getElementById('safety-img-next');
+  const dotsContainer = document.getElementById('safety-dots');
+  const dots = dotsContainer.querySelectorAll('.beck-dot');
+  const prevArrow = document.getElementById('safety-arrow-prev');
+  const nextArrow = document.getElementById('safety-arrow-next');
   
   let currentPage = 0;
   const totalPages = images.length;
@@ -53,24 +54,40 @@ function initSafetyPlanImageViewer() {
       img.classList.toggle('active', i === index);
     });
     
-    pageInfo.textContent = `Page ${index + 1} / ${totalPages}`;
-    prevBtn.disabled = index <= 0;
-    nextBtn.disabled = index >= totalPages - 1;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+
+    if (prevArrow && nextArrow) {
+      prevArrow.disabled = index <= 0;
+      nextArrow.disabled = index >= totalPages - 1;
+    }
   }
 
-  prevBtn.addEventListener('click', () => {
-    if (currentPage > 0) {
-      currentPage--;
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentPage = index;
       showPage(currentPage);
-    }
+    });
   });
 
-  nextBtn.addEventListener('click', () => {
-    if (currentPage < totalPages - 1) {
-      currentPage++;
-      showPage(currentPage);
-    }
-  });
+  if (prevArrow) {
+    prevArrow.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+  }
+
+  if (nextArrow) {
+    nextArrow.addEventListener('click', () => {
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
+  }
 
   let touchStartX = null;
 

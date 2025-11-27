@@ -216,42 +216,72 @@
   display: block;
 }
 
-.beck-pdf-controls {
+.beck-slider-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-  padding: 0.5rem 0;
+  gap: 8px;
+  z-index: 10;
 }
 
-.beck-nav-btn {
-  background: var(--accent);
-  color: var(--accent-ink);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.85rem;
+.beck-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: opacity 0.2s;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-.beck-nav-btn:hover:not(:disabled) {
-  opacity: 0.8;
+.beck-dot.active {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.beck-nav-btn:disabled {
+.beck-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  color: var(--ink);
+}
+
+.beck-arrow-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.beck-arrow-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
 
-#safety-img-info {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ink);
+.beck-arrow-prev {
+  left: 12px;
+}
+
+.beck-arrow-next {
+  right: 12px;
+}
+
+@media (min-width: 769px) {
+  .beck-arrow-btn {
+    display: flex;
+  }
 }
 
 /* Closing Section */
